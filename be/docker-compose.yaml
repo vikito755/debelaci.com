@@ -46,8 +46,8 @@ services:
     restart: always
     volumes:
       - .:/app
-    networks:
-      - app-network
+    # networks:
+    #   - app-network
 
   # celery:
   #   build:

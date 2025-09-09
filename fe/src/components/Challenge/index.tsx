@@ -39,6 +39,7 @@ interface ChallengeData {
   checked: boolean
   streak: number
   date: string // YYYY-MM-DD
+  successMessage?: string
 }
 
 const LOCAL_STORAGE_KEY = 'dailyChallenge'
@@ -72,6 +73,9 @@ const ChallengeHero: React.FC = () => {
         setChecked(data.checked)
         setStreak(data.streak)
         setDate(data.date)
+        if (data.checked && data.successMessage) {
+          setSuccessMessage(data.successMessage)
+        }
       } else {
         const newChallenge =
           challenges[Math.floor(Math.random() * challenges.length)]
@@ -123,11 +127,20 @@ const ChallengeHero: React.FC = () => {
         checked: true,
         streak,
         date,
+        successMessage: message,
       }
 
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(savedData))
     } else {
       setSuccessMessage('')
+
+      const savedData: ChallengeData = {
+        challenge,
+        checked: false,
+        streak,
+        date,
+      }
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(savedData))
     }
   }
 
@@ -159,12 +172,12 @@ const ChallengeHero: React.FC = () => {
             <Checkbox
               label={challenge}
               checked={checked}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
               onChange={(e) => handleCheck(e.currentTarget.checked)}
               size="lg"
             />
 
-            {checked && (
+            {checked && successMessage && (
               <Text fw={700} style={{ animation: 'fadeIn 0.5s ease-in-out' }}>
                 Твоят виц:<br />
                 {successMessage}

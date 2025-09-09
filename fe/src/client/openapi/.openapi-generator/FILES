@@ -1,0 +1,14 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+README.md
+package.json
+src/apis/ApiApi.ts
+src/apis/FeedbackApi.ts
+src/apis/index.ts
+src/index.ts
+src/models/Feedback.ts
+src/models/index.ts
+src/runtime.ts
+tsconfig.esm.json
+tsconfig.json

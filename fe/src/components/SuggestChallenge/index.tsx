@@ -1,3 +1,4 @@
+import { Configuration, FeedbackApi } from '@/client/openapi/src';
 import {
   Container,
   Grid,
@@ -7,12 +8,19 @@ import {
   Button,
   Group,
   Textarea,
-} from '@mantine/core'
-import { useForm } from '@mantine/form'
-import type { FunctionComponent } from 'react'
+} from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useMutation } from '@tanstack/react-query';
+import type { FunctionComponent } from 'react';
+
+const api = new FeedbackApi(
+  new Configuration({
+    basePath: 'http://localhost:8000'
+  })
+);
 
 const SuggestChallenge: FunctionComponent = () => {
-  const MAX_LENGTH = 1000
+  const MAX_LENGTH = 1000;
 
   const form = useForm({
     initialValues: {
@@ -20,19 +28,36 @@ const SuggestChallenge: FunctionComponent = () => {
     },
     validate: {
       challenge: (value) => {
-        if (!value.trim()) return 'Полето не може да бъде празно'
-        return null
+        if (!value.trim()) return 'Полето не може да бъде празно';
+        return null;
       },
     },
-  })
+  });
+
+  // ✅ Mutation using TanStack Query
+  const sendFeedback = useMutation({
+    mutationFn: (message: string) =>
+      api.feedbackCreate({ feedback: { message } }),
+    onSuccess: () => {
+      form.reset();
+      alert('Благодарим за обратната връзка!');
+    },
+    onError: () => {
+      alert('Възникна грешка при изпращането.');
+    },
+  });
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = event.target.value.slice(0, MAX_LENGTH)
-    form.setFieldValue('challenge', value)
-  }
+    const value = event.target.value.slice(0, MAX_LENGTH);
+    form.setFieldValue('challenge', value);
+  };
+
+  const handleSubmit = (values: typeof form.values) => {
+    sendFeedback.mutate(values.challenge);
+  };
 
   return (
-    <Container size="lg" py="xl">
+    <Container id="suggest" size="lg" py="xl">
       <Grid align="center" gutter="xl">
         <Stack>
           <Title ta="center">Предложи предизвикателство или виц</Title>
@@ -41,7 +66,7 @@ const SuggestChallenge: FunctionComponent = () => {
             Благодарим за подкрепата и се надяваме да е полезно.
           </Text>
 
-          <form onSubmit={form.onSubmit((values) => console.log(values))}>
+          <form onSubmit={form.onSubmit(handleSubmit)}>
             <Textarea
               withAsterisk
               label="Предизвикателство / Виц"
@@ -62,16 +87,16 @@ const SuggestChallenge: FunctionComponent = () => {
             <Group justify="flex" mt="md">
               <Button
                 type="submit"
-                disabled={form.values.challenge.trim().length === 0}
+                disabled={form.values.challenge.trim().length === 0 || sendFeedback.isPending}
               >
-                ИЗПРАТИ
+                {sendFeedback.isPending ? 'Изпращане...' : 'ИЗПРАТИ'}
               </Button>
             </Group>
           </form>
         </Stack>
       </Grid>
     </Container>
-  )
-}
+  );
+};
 
-export default SuggestChallenge
+export default SuggestChallenge;

@@ -1,3 +1,5 @@
+The schema.yaml is from "localhost:8000/api/schema". The "openapi folder" is generated via the "generate-client" script.
+
 Options for starting the project T3env, tanstack query and tanstack store.
 
 From SVG logo to all needed icons and webmanifest.

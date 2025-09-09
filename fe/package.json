@@ -10,12 +10,14 @@
     "test": "vitest run",
     "lint": "eslint",
     "format": "prettier",
-    "check": "prettier --write . && eslint --fix"
+    "check": "prettier --write . && eslint --fix",
+    "generate-client": "openapi-generator-cli generate -i ./src/client/schema.yaml -g typescript-fetch -o src/client/openapi --additional-properties=ngVersion=6.1.7,npmName=restClient,supportsES6=true,npmVersion=6.9.0,withInterfaces=true"
   },
   "dependencies": {
     "@mantine/core": "^8.2.5",
     "@mantine/form": "^8.2.8",
     "@mantine/hooks": "^8.2.5",
+    "@openapitools/openapi-generator-cli": "^2.23.1",
     "@t3-oss/env-core": "^0.12.0",
     "@tabler/icons-react": "^3.34.1",
     "@tailwindcss/vite": "^4.0.6",

@@ -8,7 +8,6 @@ import {
   IconSalad,
 } from '@tabler/icons-react'
 import {
-  Anchor,
   Box,
   Burger,
   Button,
@@ -17,9 +16,7 @@ import {
   Divider,
   Drawer,
   Group,
-  HoverCard,
   ScrollArea,
-  SimpleGrid,
   Stack,
   Text,
   ThemeIcon,
@@ -94,14 +91,14 @@ export default function Header() {
           <Group justify="space-between" h="100%">
               <Logo />
             <Group h="100%" gap={'lg'} visibleFrom="sm">
-              <a href="#" className={classes.link}>
+              <a href="/" className={classes.link}>
                 Начало
               </a>
-              <a href="#" className={classes.link}>
+              <a href="#suggest" className={classes.link}>
                 Предложи предизвикателство
               </a>
-              <a href="#" className={classes.link}>
-                Предложи шега
+              <a href="#suggest" className={classes.link}>
+                Предложи виц
               </a>
             </Group>
             <Group visibleFrom="sm">

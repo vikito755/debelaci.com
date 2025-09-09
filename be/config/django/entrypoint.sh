@@ -10,7 +10,7 @@ case "$1" in
             exec python manage.py runserver 0.0.0.0:8000
         else
             echo "Starting Gunicorn for production..."
-            exec gunicorn --bind :8000 --workers 1 app.wsgi
+            exec gunicorn --bind :8000 --workers 2 app.wsgi
         fi
         ;;
   celery)

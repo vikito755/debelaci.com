@@ -13,10 +13,11 @@ export default defineConfig({
     viteReact(),
     tailwindcss(),
   ],
-  // test: {
-  //   globals: true,
-  //   environment: 'jsdom',
-  // },
+  // @ts-expect-error
+  test: {
+    globals: true,
+    environment: 'jsdom',
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),

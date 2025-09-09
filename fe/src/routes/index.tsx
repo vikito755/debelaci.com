@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
-import { Button, Stack } from '@mantine/core'
+import { Stack } from '@mantine/core'
 import Hero from '@/components/Hero'
 import Challenge from '@/components/Challenge'
 import SuggestChallenge from '@/components/SuggestChallenge'
@@ -17,7 +16,6 @@ function App() {
     <Challenge />
     <SuggestChallenge />
     </Stack>
-      {/* <Button>test</Button> */}
     </>
   )
 }

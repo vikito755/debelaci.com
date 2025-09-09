@@ -23,6 +23,4 @@ COPY --from=builder /app /app
 
 RUN chmod +x /app/manage.py
 
-EXPOSE 8000
-
 ENTRYPOINT ["bash", "./config/django/entrypoint.sh"]

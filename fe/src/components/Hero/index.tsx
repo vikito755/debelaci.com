@@ -46,10 +46,14 @@ const Hero: FunctionComponent = () => {
           ></List>
 
           <Group mt={30}>
-            <Button radius="xl" size="md">
+            <Button
+            onClick={() => {window.location.href = "#challenge"}}
+            radius="xl" size="md">
               Предизвикай се
             </Button>
-            <Button variant="default" radius="xl" size="md">
+            <Button
+            onClick={() => {window.location.href = "#suggest"}}
+            variant="default" radius="xl" size="md">
               Предложи предизвикателство
             </Button>
           </Group>

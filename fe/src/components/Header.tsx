@@ -102,7 +102,9 @@ export default function Header() {
               </a>
             </Group>
             <Group visibleFrom="sm">
-              <Button>Предизвикай се</Button>
+              <Button 
+              onClick={() => {window.location.href = "#challenge"}}
+                >Предизвикай се</Button>
             </Group>
             <Burger
               opened={drawerOpened}

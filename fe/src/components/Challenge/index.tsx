@@ -145,7 +145,7 @@ const ChallengeHero: React.FC = () => {
   }
 
   return (
-    <Container size="lg" py="xl">
+    <Container id="challenge" size="lg" py="xl">
       <Grid align="center" gutter="xl">
         {/* Right: Hero Image */}
         <Grid.Col span={{ base: 12, md: 6 }} order={{ base: 2, md: 1 }}>

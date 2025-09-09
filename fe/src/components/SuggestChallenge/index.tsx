@@ -1,4 +1,5 @@
 import { Configuration, FeedbackApi } from '@/client/openapi/src';
+import envConfig from '@/envConfig';
 import {
   Container,
   Grid,
@@ -15,7 +16,7 @@ import type { FunctionComponent } from 'react';
 
 const api = new FeedbackApi(
   new Configuration({
-    basePath: 'http://localhost:8000'
+    basePath: envConfig.apiBaseUrl
   })
 );
 

@@ -12,7 +12,7 @@ services:
       - ./containers_data/postgres_data:/var/lib/postgresql/data
       - ./config/postgres/pg_hba.conf:/etc/postgresql/pg_hba.conf
       - ./config/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-    container_name: book-my-escape-room-db
+    container_name: debelaci-db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-debelaci}"]
       interval: 5s

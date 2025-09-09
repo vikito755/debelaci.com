@@ -1,4 +1,5 @@
 import { StrictMode } from 'react'
+import { Toaster } from 'react-hot-toast';
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 
@@ -46,6 +47,7 @@ if (rootElement && !rootElement.innerHTML) {
           <RouterProvider router={router} />
         </MantineProvider>
       </TanStackQueryProvider.Provider>
+      <Toaster />
     </StrictMode>,
   )
 }

@@ -1,5 +1,6 @@
 import { Configuration, FeedbackApi } from '@/client/openapi/src';
 import envConfig from '@/envConfig';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   Container,
   Grid,
@@ -41,10 +42,11 @@ const SuggestChallenge: FunctionComponent = () => {
       api.feedbackCreate({ feedback: { message } }),
     onSuccess: () => {
       form.reset();
-      alert('Благодарим за обратната връзка!');
+      toast.success('Благодаря, че писа. :)');
+      // alert('Благодарим за обратната връзка!');
     },
     onError: () => {
-      alert('Възникна грешка при изпращането.');
+      toast.error('Възникна грешка при изпращането.');
     },
   });
 
